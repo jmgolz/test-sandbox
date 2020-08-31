@@ -15,4 +15,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('api/tasks', 'TasksController@getAll');
+// Route::get('api/tasks', 'TasksController@getAll');
+// Route::delete('api/task/{id}', 'TasksController@deleteTask');
