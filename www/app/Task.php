@@ -13,6 +13,13 @@ class Task extends Model
      */
     protected $table = 'task';
 
+    protected $attributes = [
+        'is_done' => 0,
+        'is_deleted' => 0
+    ];
+
+    protected $fillable = ['task'];
+
     /**
      * Set correct columns for created/updated
      */
