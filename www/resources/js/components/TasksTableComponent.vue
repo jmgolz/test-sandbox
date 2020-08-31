@@ -19,6 +19,31 @@
                             </tbody>
                         </table>
                     </div>
+
+                    <div class="card-footer">
+                        <div class="row">
+                                <div class="col">
+                                    Add new TODO
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <form @submit.prevent="createTask">
+                                        <div class="form-group">
+                                            <label for="task-name">Task Name</label>
+                                            <input 
+                                                class="form-control" 
+                                                id="task-name"
+                                                v-model="taskName"
+                                                required
+                                            >
+                                        </div>
+                                        <button class="btn btn-danger btn-sm"><i class="fa fa-times" /></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -29,7 +54,8 @@
     export default {
         data() {
             return {
-                tasks: []
+                tasks: [],
+                taskName: ''
             };
         },
         mounted() {
@@ -41,6 +67,14 @@
                     .then(response => {
                         this.tasks = response.data;
                     }).catch(console.error)
+            },
+            createTask() {
+                return axios.post('api/tasks', {task: this.taskName})
+                    .then(response => {
+                        this.tasks.push(response.data);
+                        this.taskName = '';
+                    })
+                    .catch(console.error);
             },
             deleteTask(id) {
                 return axios.post('/api/tasks/' + id, {_method: 'DELETE'})

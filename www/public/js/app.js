@@ -1935,10 +1935,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      tasks: []
+      tasks: [],
+      taskName: ''
     };
   },
   mounted: function mounted() {
@@ -1950,6 +1976,17 @@ __webpack_require__.r(__webpack_exports__);
 
       return axios.get('/api/tasks').then(function (response) {
         _this.tasks = response.data;
+      })["catch"](console.error);
+    },
+    createTask: function createTask() {
+      var _this2 = this;
+
+      return axios.post('api/tasks', {
+        task: this.taskName
+      }).then(function (response) {
+        _this2.tasks.push(response.data);
+
+        _this2.taskName = '';
       })["catch"](console.error);
     },
     deleteTask: function deleteTask(id) {
@@ -37583,6 +37620,57 @@ var render = function() {
                 0
               )
             ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-footer" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col" }, [
+                _c(
+                  "form",
+                  {
+                    on: {
+                      submit: function($event) {
+                        $event.preventDefault()
+                        return _vm.createTask($event)
+                      }
+                    }
+                  },
+                  [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "task-name" } }, [
+                        _vm._v("Task Name")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.taskName,
+                            expression: "taskName"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { id: "task-name", required: "" },
+                        domProps: { value: _vm.taskName },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.taskName = $event.target.value
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(2)
+                  ]
+                )
+              ])
+            ])
           ])
         ])
       ])
@@ -37598,6 +37686,26 @@ var staticRenderFns = [
       _c("th", [_vm._v("Name")]),
       _vm._v(" "),
       _c("th")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col" }, [
+        _vm._v(
+          "\n                                Add new TODO\n                            "
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("button", { staticClass: "btn btn-danger btn-sm" }, [
+      _c("i", { staticClass: "fa fa-times" })
     ])
   }
 ]
