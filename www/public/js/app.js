@@ -1924,21 +1924,71 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      tasks: []
+      tasks: [],
+      taskName: ''
     };
   },
   mounted: function mounted() {
-    // console.log('Component mounted.')
     this.getTasks();
   },
   methods: {
     getTasks: function getTasks() {
+      var _this = this;
+
       return axios.get('/api/tasks').then(function (response) {
-        console.log(response);
+        _this.tasks = response.data;
       })["catch"](console.error);
+    },
+    createTask: function createTask() {
+      var _this2 = this;
+
+      return axios.post('api/tasks', {
+        task: this.taskName
+      }).then(function (response) {
+        _this2.tasks.push(response.data);
+
+        _this2.taskName = '';
+      })["catch"](console.error);
+    },
+    deleteTask: function deleteTask(id) {
+      return axios.post('/api/tasks/' + id, {
+        _method: 'DELETE'
+      }).then(this.getTasks)["catch"](console.error);
     }
   }
 });
@@ -37527,28 +37577,118 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-md-8" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-header" }, [_vm._v("Tasks - TODOs")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c("table", { staticClass: "table table-striped table-bordered" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.tasks, function(task) {
+                  return _c("tr", { key: task.id }, [
+                    _c("td", [_vm._v(_vm._s(task.task))]),
+                    _vm._v(" "),
+                    _c("td", { attrs: { align: "center" } }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger btn-sm",
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.deleteTask(task.id)
+                            }
+                          }
+                        },
+                        [
+                          _c("i", { staticClass: "fa fa-times" }),
+                          _vm._v(" Delete")
+                        ]
+                      )
+                    ])
+                  ])
+                }),
+                0
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-footer" }, [
+            _c(
+              "form",
+              {
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.createTask($event)
+                  }
+                }
+              },
+              [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col col-md-8" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.taskName,
+                            expression: "taskName"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          id: "task-name",
+                          placeholder: "Add new todo",
+                          required: ""
+                        },
+                        domProps: { value: _vm.taskName },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.taskName = $event.target.value
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(1)
+                ])
+              ]
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              )
-            ])
-          ])
-        ])
+    return _c("thead", { staticClass: "thead-dark" }, [
+      _c("th", [_vm._v("Name")]),
+      _vm._v(" "),
+      _c("th")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col col-md-4" }, [
+      _c("button", { staticClass: "btn btn-success btn-sm" }, [
+        _vm._v("Add To-Do")
       ])
     ])
   }
