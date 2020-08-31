@@ -20,29 +20,25 @@
                         </table>
                     </div>
 
-                    <div class="card-footer">
-                        <div class="row">
-                                <div class="col">
-                                    Add new TODO
-                                </div>
-                            </div>
+                <div class="card-footer">
+                        <form @submit.prevent="createTask">
                             <div class="row">
-                                <div class="col">
-                                    <form @submit.prevent="createTask">
-                                        <div class="form-group">
-                                            <label for="task-name">Task Name</label>
-                                            <input 
-                                                class="form-control" 
-                                                id="task-name"
-                                                v-model="taskName"
-                                                required
-                                            >
-                                        </div>
-                                        <button class="btn btn-danger btn-sm"><i class="fa fa-times" /></button>
-                                    </form>
+                                <div class="col col-md-8">
+                                    <div class="form-group">
+                                        <input 
+                                            class="form-control" 
+                                            id="task-name"
+                                            v-model="taskName"
+                                            placeholder="Add new todo"
+                                            required
+                                        >
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
+                                <div class="col col-md-4">
+                                    <button class="btn btn-success btn-sm">Add To-Do</button>                                        
+                                </div>
+                            </div>                                    
+                        </form>
                     </div>
                 </div>
             </div>

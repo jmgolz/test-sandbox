@@ -1956,10 +1956,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -37623,26 +37619,20 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "card-footer" }, [
-            _vm._m(1),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col" }, [
-                _c(
-                  "form",
-                  {
-                    on: {
-                      submit: function($event) {
-                        $event.preventDefault()
-                        return _vm.createTask($event)
-                      }
-                    }
-                  },
-                  [
+            _c(
+              "form",
+              {
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.createTask($event)
+                  }
+                }
+              },
+              [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col col-md-8" }, [
                     _c("div", { staticClass: "form-group" }, [
-                      _c("label", { attrs: { for: "task-name" } }, [
-                        _vm._v("Task Name")
-                      ]),
-                      _vm._v(" "),
                       _c("input", {
                         directives: [
                           {
@@ -37653,7 +37643,11 @@ var render = function() {
                           }
                         ],
                         staticClass: "form-control",
-                        attrs: { id: "task-name", required: "" },
+                        attrs: {
+                          id: "task-name",
+                          placeholder: "Add new todo",
+                          required: ""
+                        },
                         domProps: { value: _vm.taskName },
                         on: {
                           input: function($event) {
@@ -37664,13 +37658,13 @@ var render = function() {
                           }
                         }
                       })
-                    ]),
-                    _vm._v(" "),
-                    _vm._m(2)
-                  ]
-                )
-              ])
-            ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(1)
+                ])
+              ]
+            )
           ])
         ])
       ])
@@ -37692,20 +37686,10 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col" }, [
-        _vm._v(
-          "\n                                Add new TODO\n                            "
-        )
+    return _c("div", { staticClass: "col col-md-4" }, [
+      _c("button", { staticClass: "btn btn-success btn-sm" }, [
+        _vm._v("Add To-Do")
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("button", { staticClass: "btn btn-danger btn-sm" }, [
-      _c("i", { staticClass: "fa fa-times" })
     ])
   }
 ]
