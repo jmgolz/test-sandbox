@@ -16,8 +16,22 @@
 
 <script>
     export default {
+        data() {
+            return {
+                tasks: []
+            };
+        },
         mounted() {
-            console.log('Component mounted.')
+            // console.log('Component mounted.')
+            this.getTasks();
+        },
+        methods: {
+            getTasks() {
+                return axios.get('/api/tasks')
+                    .then(response => {
+                        console.log(response);
+                    }).catch(console.error)
+            }
         }
     }
 </script>

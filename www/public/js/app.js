@@ -1925,8 +1925,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      tasks: []
+    };
+  },
   mounted: function mounted() {
-    console.log('Component mounted.');
+    // console.log('Component mounted.')
+    this.getTasks();
+  },
+  methods: {
+    getTasks: function getTasks() {
+      return axios.get('/api/tasks').then(function (response) {
+        console.log(response);
+      })["catch"](console.error);
+    }
   }
 });
 
